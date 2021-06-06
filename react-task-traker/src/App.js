@@ -1,10 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
 
+import Header from './Components/Header'
+import Tasks from './Components/Tasks'
+import {useState} from 'react'
 function App() {
+  const [tasks, setTasks] = useState([
+        {id:1},
+        {id:2},
+        {id:3},
+  ])
+
+
   return (
-    <div className="App">
-      <h1>Hello World</h1>
+    <div className="container">
+     <Header />
+      <Tasks tasks={tasks} />
     </div>
   );
 }
