@@ -4,6 +4,7 @@ import AddTask from './Components/AddTask'
 import { useState } from 'react'
 
 function App() {
+    const [showAddTask, setShowAddTask] = useState(false)
     const [tasks, setTasks] = useState([{
             id: 1,
             day: 1,
@@ -37,20 +38,26 @@ function App() {
 
     }
 
-    const addTask = () => {
-        console.log('I work');
+    const addTask = (task) => {
+        const id = Math.floor(Math.random() * 10000) + 1
+        console.log('%cApp.js line:42 id', 'color: #007acc;', id);
+        const newTask = { id, ...task }
     }
 
     return ( <
-            div className = "container" >
-            <
-            Header / >
-            <
-            AddTask onAdd = { addTask }
-            / > {
+        div className = "container" >
+        <
+        Header onAdd = {
+            () => setShowAddTask(!showAddTask)
+        }
+        / >
+
+        {
+            showAddTask && < AddTask onAdd = { addTask }
+            /> }  {
             tasks.length > 0 ?
-            <
-            Tasks tasks = { tasks }
+                <
+                Tasks tasks = { tasks }
             onDelete = { deleteTask }
             onToggle = { toggleReminder }
             /> :
@@ -58,7 +65,7 @@ function App() {
 
         } <
         /div>
-);
+    );
 }
 
 export default App;
