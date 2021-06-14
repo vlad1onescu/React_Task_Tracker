@@ -45,12 +45,16 @@ function App() {
     console.log('%cApp.js line:45 task', 'color: #007acc;', task);
     setTasks([...tasks,newTask])
     console.log('%cApp.js line:47 tasks', 'color: #007acc;', tasks);
+
   };
 
   return (
     <div className="container">
-      <Header onAdd={() => setShowAddTask(!showAddTask)} />
-      {showAddTask && <AddTask onAdd={addTask}  showAdd={showAddTask} />}{" "}
+      <Header showAdd ={showAddTask} onAdd={() => {setShowAddTask(!showAddTask)
+    console.log('%cApp.js line:54 showAddTask', 'color: #007acc;', showAddTask);
+      }
+    } />
+      {showAddTask && <AddTask onAdd={addTask}   />}{" "}
       {tasks.length > 0 ? (
         <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />
       ) : (
